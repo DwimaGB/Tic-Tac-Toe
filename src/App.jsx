@@ -1,11 +1,17 @@
 import { useState } from 'react';
-import Square from './components/Square';
-import Board from './components/Board';
+import GameBoard from './components/GameBoard';
 import './App.css';
 
 export default function App() {
 
-  return <Board></Board>
+
+  return (
+    <>
+      <h1>Tic Tac Toe</h1>
+      <GameBoard></GameBoard>
+    </>
+
+  );
 
 }
 
