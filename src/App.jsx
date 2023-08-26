@@ -1,27 +1,11 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import Square from './components/Square';
+import Board from './components/Board';
+import './App.css';
 
-function Button({onClick}){
-  return (
-    <button onClick={onClick}>
-      Click me
-    </button>
-  );
+export default function App() {
+
+  return <Board></Board>
+
 }
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  const counter = ()=>{
-    setCount(count + 1);
-  }
-
-  return (
-    <>
-      <p>{count}</p>
-      <Button onClick={counter}></Button>
-    </>
-  )
-}
-
-export default App
