@@ -56,7 +56,7 @@ export default function GameBoard() {
     return (
         <>
             <div className="board">
-                {isGameOver ? <PlayAgain></PlayAgain> : ''}
+                {isGameOver ? <PlayAgain setIsGameOver={setIsGameOver} setPlayerMoves={setPlayerMoves} setXIsNext={setXIsNext}></PlayAgain> : ''}
                 <div className="board-row">
                     <Square value={playerMoves[0]} updateBoard={() => updateBoard(0)}></Square>
                     <Square value={playerMoves[1]} updateBoard={() => updateBoard(1)}></Square>
