@@ -1,0 +1,24 @@
+
+.reset-popup{
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsla(0, 0%, 20%, 0.8);
+
+}
+
+.reset-icon{
+    font-size: 2rem;
+}
+
+.btn-icon{
+    all: unset;
+}
+
+.btn-icon:hover{
+    cursor: pointer;
+}
