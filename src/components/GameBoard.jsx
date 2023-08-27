@@ -6,11 +6,25 @@ import './GameBoard.css';
 export default function GameBoard() {
 
     const [playerMoves, setPlayerMoves] = useState(Array(9).fill(null));
+    const [xIsNext, setXIsNext] = useState(true);
 
     const updateBoard = index=>{
+        if(playerMoves[index]){
+            return;
+        }
         const newPlayerMoves = [...playerMoves];
-        newPlayerMoves[index] = 'X';
+
+        if(xIsNext){
+            newPlayerMoves[index] = 'X';
+            setXIsNext(false);
+        }
+        else{
+            newPlayerMoves[index] = 'O';
+            setXIsNext(true);
+        }
+
         setPlayerMoves(newPlayerMoves);
+        
     }
 
     return (
@@ -31,7 +45,7 @@ export default function GameBoard() {
                 <Square value={playerMoves[8]} updateBoard={()=> updateBoard(8)}></Square>
             </div>
 
-            <GameStatus></GameStatus>
+            <GameStatus nextMove={xIsNext? 'X': 'O'}></GameStatus>
         </>
     );
 }
