@@ -9,7 +9,7 @@ export default function GameBoard() {
     const [xIsNext, setXIsNext] = useState(true);
 
     const updateBoard = index=>{
-        if(playerMoves[index]){
+        if(playerMoves[index] || checkWinner(playerMoves)){
             return;
         }
         const newPlayerMoves = [...playerMoves];
@@ -45,7 +45,38 @@ export default function GameBoard() {
                 <Square value={playerMoves[8]} updateBoard={()=> updateBoard(8)}></Square>
             </div>
 
-            <GameStatus nextMove={xIsNext? 'X': 'O'}></GameStatus>
+            <GameStatus status={updateStatus(checkWinner, xIsNext, playerMoves)}></GameStatus>
         </>
     );
+}
+
+function checkWinner(playerMoves){
+    const winnerConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
+    for(const condition of winnerConditions){
+        const [i, j, k] = condition;
+
+        if(playerMoves[i] === playerMoves[j] && playerMoves[i] === playerMoves[k]){
+            return playerMoves[i];
+        }
+    }
+
+    return null; 
+}
+
+function updateStatus(checkWinner, xIsNext, playerMoves){
+    const winner = checkWinner(playerMoves);
+
+    if (winner){
+        return `Player ${winner} won`;
+    }
+    return xIsNext? 'Next Player: X': 'Next Player: O';
 }
